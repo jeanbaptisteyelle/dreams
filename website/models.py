@@ -23,7 +23,7 @@ class Siteinfo(models.Model):
     phone = models.FloatField(max_length = 255)
     email = models.EmailField()
     mapping = models.TextField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to="images/siteinfo")
     message = models.TextField()
     contact = models.FloatField()
     adresse = models.CharField(max_length = 255)
@@ -68,23 +68,25 @@ class Newletter(models.Model):
     def __str__(self):
         return self.Newletter
 
-class Reseau_social(models.Model):
+class Reseausocial(models.Model):
+    ICONE = [
+        ('facebook','fa-facebook'),
+        ('twitter','fa-tweeter'),
+        ('globe','fa-globe'),
+        ('behance','fa-behance '),
+    ]
+    icon = models.CharField(max_length=255, choices=ICONE)
     nom = models.CharField(max_length= 255)
     lien = models.URLField()
     date_add = models.DateTimeField(auto_now_add = True)
     date_update = models.DateTimeField(auto_now = True)
     status = models.BooleanField(default= True)
 
-    icon = [
-        ('facebook','fa-facebook'),
-        ('fa-tweeter'),
-        ('fa-globe'),
-        ('fa-behance ')
-    ]
+    
 
     class Meta:
-        verbose_name = "Reseau_social"
-        verbose_name_plural = "Reseau_socials"
+        verbose_name = "Reseau social"
+        verbose_name_plural = "Reseau sociaux"
 
     def __str__(self):
         self.nom
